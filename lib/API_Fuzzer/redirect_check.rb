@@ -35,7 +35,8 @@ module API_Fuzzer
         fragments << query.split('&') if query
         fragments.flatten!
         fragments.each do |fragment|
-          if fragment.match(/\A(\w+)=(.?*)\z/) && valid_url?($2)
+          #if fragment.match(/\A(\w+)=(.?*)\z/) && valid_url?($2)
+          if fragment.match(/\A(\w+)=(.*)\z/) && valid_url?($2)
             url = @url.gsub($2, REDIRECT_URL).chomp
             fuzz_fragment(url)
           elsif valid_url?(fragment)
